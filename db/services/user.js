@@ -14,7 +14,12 @@ const getOne = (filter) => {
   return User.findOne(filter);
 };
 
+const updateById = (id, updateInfo) => {
+  return User.findByIdAndUpdate(id, updateInfo);
+};
+
 module.exports = {
   add,
   getOne,
+  updateById,
 };

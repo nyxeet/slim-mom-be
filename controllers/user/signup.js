@@ -1,9 +1,10 @@
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 const servises = require("../../db/services/user");
 
 const signup = async (req, res, next) => {
   const { name, login, password, userData } = req.body;
-
-  console.log(userData);
 
   try {
     const result = await servises.getOne({ login });
@@ -18,6 +19,13 @@ const signup = async (req, res, next) => {
 
     const newUser = await servises.add({ name, login, password, userData });
 
+    const { SECRET_KEY } = process.env;
+    const payload = {
+      id: newUser._id,
+    };
+    const token = jwt.sign(payload, SECRET_KEY);
+    await servises.updateById(newUser._id, { token });
+
     res.status(201).json({
       status: "success",
       code: 201,
@@ -25,6 +33,7 @@ const signup = async (req, res, next) => {
         user: {
           name: newUser.name,
           login: newUser.login,
+          token,
         },
       },
     });
