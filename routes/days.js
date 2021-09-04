@@ -4,6 +4,7 @@ const jwtAuthenticate = require("../middlewares/passport");
 
 const get = require("../controllers/days/get");
 const addProduct = require("../controllers/days/addProduct");
+
 const removeProduct = require("../controllers/days/removeProduct");
 
 const validateGetDay = require("../validation/days/getDay");

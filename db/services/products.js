@@ -9,7 +9,6 @@ const getOne = (filter) => {
 };
 
 const getByQuery = (filter) => {
-  console.log(filter);
   return Product.find(filter);
 };
 const getNotAllowedProducts = async (bloodGroup) => {
