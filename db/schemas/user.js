@@ -42,7 +42,7 @@ const userSchema = Schema({
       default: null,
     },
     dailyCalorieIntake: { type: String, default: null },
-    notAllowedProducts: { type: [String], default: null },
+    notAllowedProducts: { type: [Object], default: null },
   },
 });
 
