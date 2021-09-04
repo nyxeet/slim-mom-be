@@ -5,6 +5,7 @@ require("./config/passport");
 
 const userRouter = require("./api/user");
 const daysRouter = require("./api/days");
+const productRouter = require("./api/products");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/user", userRouter);
 app.use("/api/days", daysRouter);
+app.use("/api/product", productRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
