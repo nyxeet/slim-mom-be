@@ -2,7 +2,8 @@ const Joi = require("joi");
 
 const schemaAddProduct = Joi.object({
   date: Joi.string().required(),
-  product: Joi.object().required(),
+  productId: Joi.string().required(),
+  weight: Joi.number().required(),
 });
 
 const validateAddProduct = (req, res, next) => {
