@@ -9,12 +9,25 @@ const getOne = (filter) => {
 };
 
 const getByQuery = (filter) => {
-  console.log(filter);
   return Product.find(filter);
+};
+const getNotAllowedProducts = async (bloodGroup) => {
+  const bloodGroupArray = [null, false, false, false, false];
+
+  bloodGroupArray[bloodGroup] = true;
+
+  const products = await Product.find({
+    groupBloodNotAllowed: bloodGroupArray,
+  });
+  return products.map((product) => ({
+    title: product.title,
+    categories: product.categories,
+  }));
 };
 
 module.exports = {
   getById,
   getOne,
   getByQuery,
+  getNotAllowedProducts,
 };
