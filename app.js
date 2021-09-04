@@ -3,9 +3,9 @@ const logger = require("morgan");
 const cors = require("cors");
 require("./config/passport");
 
-const userRouter = require("./api/user");
-const daysRouter = require("./api/days");
-const productRouter = require("./api/products");
+const userRouter = require("./routes/user");
+const daysRouter = require("./routes/days");
+const productRouter = require("./routes/products");
 
 const app = express();
 
