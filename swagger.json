@@ -1,0 +1,586 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Slim Mum",
+    "description": "Slim Mum back-end docs"
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "http://localhost:3000/api/" }],
+  "tags": [
+    {
+      "name": "User",
+      "description": "Authorization and personal info endpoints"
+    },
+    {
+      "name": "Days",
+      "description": "Daily rate endpoints"
+    },
+    {
+      "name": "Product",
+      "description": "Product info endpoints"
+    }
+  ],
+
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User registration",
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Login already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User login",
+
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User logout",
+
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/user/setUserCalories":{
+        "post": {
+        "tags": ["User"],
+        "summary": "Get users calories and update user data",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User data object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/setUserCaloriesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/setUserCaloriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/user/getCalories":{
+         "post": {
+        "tags": ["User"],
+        "summary": "Get users calories without auth",
+        "requestBody": {
+          "description": "User data object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/setUserCaloriesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/setUserCaloriesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/days/get": {
+         "get": {
+        "tags": ["Days"],
+        "summary": "Get info about some day",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Date object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/getDayRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getDayResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/days/addProduct": {
+        "post": {
+        "tags": ["Days"],
+        "summary": "Add new product to day",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Product data object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/addProductRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addProductResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/days/removeProduct":{
+        "post": {
+        "tags": ["Days"],
+        "summary": "Remove product from day",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Product data object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveProductRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveProductResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/product/":{
+          "get": {
+        "tags": ["Product"],
+        "summary": "Get products list by query ",
+         "parameters": [{
+             "in": "query",
+             "name": "productName",
+             "required": true,
+             "description": "Product name"
+         }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getProductListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    }
+    
+  },
+
+  "components": {
+    "schemas": {
+      "SignupRequest": {
+        "type": "object",
+        "required": ["name", "login", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "login":{
+              "type": "string",
+              "description": "User's login"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          },
+          "userData": {
+                  "$ref": "#/components/schemas/UserData"
+                }
+        }
+      },
+      "SignupResponse": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type":"string"
+            },
+            "login": {
+                "type":"string"
+            },
+            "token": {
+                "type":"string"
+            }
+        }
+      },
+      "LoginRequest": {
+          "type": "object",
+        "required": ["login", "password"],
+          "properties": {
+              "login": {
+                  "type":"string"
+              },
+              "password": {
+                  "type":"string"
+              }
+          }
+      },
+      "LoginResponse": {
+          "type": "object",
+          "properties": {
+              "token": {
+                  "type":"string"
+              }
+          }
+      },
+      "LogoutResponse":{
+          "type": "string"
+      },
+      "setUserCaloriesRequest":{
+          "type": "object",
+        "required": ["height", "age", "weight", "newWeight", "bloodGroup"],
+        "properties": {
+          "height": {
+            "type": "number",
+            "description": "User's height"
+          },
+          "age": {
+            "type": "number",
+            "description": "User's age"
+          },
+          "weight": {
+            "type": "number",
+            "description": "User's weight"
+          },
+          "newWeight": {
+            "type": "number",
+            "description": "User's newWeight"
+          },
+          "bloodGroup": {
+            "type": "number",
+            "description": "User's bloodGroup"
+          }
+        }
+      },
+      "setUserCaloriesResponse":{
+          "type": "object",
+          "properties": {
+              "calories": {
+                  "type":"string"
+              },
+              "notAllowedProducts":{
+                  "type": "array",
+                      "items": {
+                          "type": "string"
+                      }
+              }
+          }
+      },
+      "getDayRequest":{
+          "type": "object",
+          "properties": {
+              "date": {
+                  "type": "string",
+                  "example": "10-23-2020"
+              }
+          }
+      },
+      "getDayResponse":{
+          "type": "object",
+          "properties": {
+              "day":{
+                  "$ref": "#/components/schemas/DayData"
+                  }
+              }
+       },
+       "addProductRequest":{
+           "type":"object",
+           "properties":{
+               "productId":{
+                   "type":"string"
+               },
+               "date":{
+                   "type":"string"
+               },
+               "weight":{
+                   "type":"string"
+               }
+           }
+       },
+       "addProductResponse":{
+           "type":"object",
+           "properties":{
+               "$ref": "#/components/schemas/DayData"
+           }
+       },
+       "RemoveProductRequest":{
+           "type":"object",
+           "properties":{
+               "productId":{
+                   "type": "string"
+               },
+               "date":{
+                   "type": "string",
+                   "example": "10-23-2020"
+               }
+           }
+       },
+       "RemoveProductResponse":{
+           "type":"object",
+           "properties":{
+               "$ref": "#/components/schemas/DayData"
+           }
+       },
+       "getProductListResponse":{
+           "type":"object",
+           "properties": {
+               "result":{
+                   "type":"array",
+                   "items":{
+                       "type":"object",
+                       "properties":{
+                           "categories":{
+                               "type":"array",
+                               "items":{
+                                   "type":"string"
+                               }
+                           },
+                           "weight":{
+                               "type": "number"
+                           },
+                           "title":{
+                               "type":"object",
+                               "properties":{
+                                   "ru":{
+                                       "type":"string"
+                                   },
+                                   "ua":{
+                                       "type":"string"
+                                   }
+                               }
+                           },
+                           "calories":{
+                               "type":"number"
+                           },
+                           "groupBloodNotAllowed":{
+                               "type":"array",
+                               "items":{
+                                   "type":"boolean"
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       },
+
+      "UserData": {
+              "type": "object",
+              "description": "User's data",
+              "properties":{
+                  "height": {
+                      "type": "string"
+                  },
+                  "age": {
+                      "type": "string"
+                  },
+                  "currentWeight": {
+                      "type": "string"
+                  },
+                  "goalWeight": {
+                      "type": "string"
+                  },
+                  "bloodGroup": {
+                      "type": "string"
+                  },
+                  "dailyCalorieIntake": {
+                      "type": "string"
+                  },
+                  "notAllowedProducts": {
+                      "type": "array",
+                      "items": {
+                          "type": "string"
+                      }
+                  }
+              }
+      },
+      "DayData":{
+          "type":"object",
+                  "properties":{
+                      "productList":{
+                          "type": "array",
+                          "items":{
+                               "type":"string"
+                          }
+                      },
+                      "date":{
+                          "type":"string"
+                      },
+                      "userId":{
+                          "type":"string"
+                        }
+                      }
+      }
+      }
+
+    },
+
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
