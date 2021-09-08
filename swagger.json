@@ -194,7 +194,7 @@
     },
 
     "/days/get": {
-         "get": {
+         "post": {
         "tags": ["Days"],
         "summary": "Get info about some day",
         "security": [{ "Bearer": [] }],
