@@ -23,6 +23,6 @@ router.post(
   jwtAuthenticate,
   setUserCalories
 );
-router.get("/getCalories", validateGetCalories, getCalories);
+router.post("/getCalories", validateGetCalories, getCalories);
 
 module.exports = router;
