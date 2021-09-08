@@ -8,9 +8,9 @@ const login = async (req, res, next) => {
   try {
     const user = await services.getOne({ email });
     if (!user || !user.comparePassword(password)) {
-      res.status(HttpCode.BAD_REQUEST).json({
+      res.status(400).json({
         status: "error",
-        code: HttpCode.BAD_REQUEST,
+        code: 400,
         message: "Wrong email or password",
       });
     }
