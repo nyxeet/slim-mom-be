@@ -192,6 +192,29 @@
         }
       }
     },
+    "/user/getCurrentUser":{
+        "get": {
+        "tags": ["User"],
+        "summary": "Get users info",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getUserResponses"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
 
     "/days/get": {
          "post": {
@@ -426,6 +449,17 @@
                       }
               }
           }
+      },
+      "getUserResponses":{
+        "type": "object",
+        "properties": {
+          "login":{
+            "type": "string"
+          },
+          "userData":{
+            "$ref": "#/components/schemas/UserData"
+          }
+        }
       },
       "getDayRequest":{
           "type": "object",
