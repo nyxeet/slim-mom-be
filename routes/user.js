@@ -8,6 +8,7 @@ const logout = require("../controllers/user/logout");
 
 const getCalories = require("../controllers/user/getCalories");
 const setUserCalories = require("../controllers/user/setUserCalories");
+const getCurrentUser = require("../controllers/user/getCurrentUser");
 
 const validateNewUser = require("../validation/user/newUser");
 const validateLoginUser = require("../validation/user/loginUser");
@@ -23,6 +24,7 @@ router.post(
   jwtAuthenticate,
   setUserCalories
 );
-router.get("/getCalories", validateGetCalories, getCalories);
+router.post("/getCalories", validateGetCalories, getCalories);
+router.get("/getCurrentUser", jwtAuthenticate, getCurrentUser);
 
 module.exports = router;

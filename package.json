@@ -19,7 +19,8 @@
     "morgan": "1.10.0",
     "nanoid": "^3.1.25",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "eslint": "^7.19.0",
@@ -33,7 +34,9 @@
     "type": "git",
     "url": "git+https://github.com/nyxeet/slim-mom-be.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "Dimas <myemail@mail.com>",
   "license": "ISC",
   "bugs": {

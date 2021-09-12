@@ -4,13 +4,13 @@ const jwt = require("jsonwebtoken");
 const services = require("../../db/services/user");
 
 const login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { login, password } = req.body;
   try {
-    const user = await services.getOne({ email });
+    const user = await services.getOne({ login });
     if (!user || !user.comparePassword(password)) {
-      res.status(HttpCode.BAD_REQUEST).json({
+      res.status(400).json({
         status: "error",
-        code: HttpCode.BAD_REQUEST,
+        code: 400,
         message: "Wrong email or password",
       });
     }
