@@ -34,7 +34,9 @@
     "type": "git",
     "url": "git+https://github.com/nyxeet/slim-mom-be.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "Dimas <myemail@mail.com>",
   "license": "ISC",
   "bugs": {
